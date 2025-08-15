@@ -9,39 +9,46 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @State private var score: Int = 0
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
+//        NavigationSplitView {
+//            List {
+//                ForEach(items) { item in
+//                    NavigationLink {
+//                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+//                    } label: {
+//                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+//                    }
+//                }
+//                .onDelete(perform: deleteItems)
+//            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    EditButton()
+//                }
+//                ToolbarItem {
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
+//                }
+//            }
+//        } detail: {
+//            Text("Select an item")
+//        }
+        VStack() {
+            GridView(gridItemIndex: 0, isClicked: false)
+            GridView(gridItemIndex: 0, isClicked: false)
+            GridView(gridItemIndex: 0, isClicked: false)
+            GridView(gridItemIndex: 0, isClicked: false)
         }
     }
 
     private func addItem() {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = Item(timestamp: Date(), score: 0)
             modelContext.insert(newItem)
         }
     }
@@ -52,6 +59,9 @@ struct ContentView: View {
                 modelContext.delete(items[index])
             }
         }
+    }
+    private func checkIfLose() -> Bool{
+        return false
     }
 }
 
