@@ -48,12 +48,10 @@ struct ContentView: View {
 //        } detail: {
 //            Text("Select an item")
 //        }
-        VStack() {
-            GridView(gridItemIndex: 0, isClicked: false)
-            GridView(gridItemIndex: 0, isClicked: false)
-            GridView(gridItemIndex: 0, isClicked: false)
-            GridView(gridItemIndex: 0, isClicked: false)
-        }
+        
+        GridView(cell: 0)
+        
+        // Make a overlay or a button to a score view
     }
 
     private func addItem() {
@@ -72,6 +70,12 @@ struct ContentView: View {
     }
     private func checkIfLose() -> Bool{
         return false
+    }
+    private func timer() {
+        
+    }
+    private func updateGrid() {
+        
     }
 }
 
