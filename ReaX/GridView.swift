@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct GridView: View {
-    @State var gridItemIndex: Int
-    @State var isClicked: Bool
+    @State var cell: Int
     var body: some View {
-         Text("\(gridItemIndex)")
+
     }
 }
 
 #Preview {
-    GridView(gridItemIndex: 9, isClicked: false)
+    GridView(cell: 1)
 }
