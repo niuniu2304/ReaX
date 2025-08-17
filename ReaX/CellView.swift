@@ -31,9 +31,28 @@ struct CellView: View {
     }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .frame(width: 250, height: 250)
-            .foregroundStyle(cellState.backgroundColor)
+        Button {
+            if cellState.backgroundColor == .red {
+                // Deduct points from the score variable (+ make the score variable an environment variable accessible by all are use a @Binding to change it's value
+                // Maybe use an animation to transition from the color changes
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+                    self.cellState = .black
+                }
+                self.cellState = .normal
+            } else if cellState.backgroundColor == .green{
+                // Add points to score
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
+                    self.cellState = .normal
+                }
+            } else {
+                // Do nothing or deduct points but less than if it's red
+            }
+        } label: {
+            RoundedRectangle(cornerRadius: 20)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundStyle(cellState.backgroundColor)
+                .padding()
+        }
     }
 }
 
