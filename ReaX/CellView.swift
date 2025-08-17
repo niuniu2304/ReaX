@@ -14,15 +14,18 @@ struct CellView: View {
         case normal
         case red
         case green
+        case black
         
         var backgroundColor: Color {
             switch self {
             case .normal:
-                return .clear
+                return .gray
             case .red:
                 return .red
             case .green:
                 return .green
+            case .black:
+                return .black
             }
         }
     }
