@@ -19,6 +19,8 @@ import SwiftData
  */
 
 struct ContentView: View {
+    
+    @StateObject var gridViewModel: CellViewModel = CellViewModel()
     @State private var score: Int = 0
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
