@@ -10,7 +10,8 @@ import SwiftData
 import SwiftUICore
 
 struct CellModel: Identifiable {
-    var id: String = UUID().uuidString
+    let id: String = UUID().uuidString
+    var backgroundColor: cellStates
     
     enum cellStates {
         case normal
