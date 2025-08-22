@@ -49,7 +49,7 @@ struct ContentView: View {
 //            Text("Select an item")
 //        }
         
-        GridView(cell: 0)
+//        GridView(cell: 0)
         
         // Make a overlay or a button to a score view
     }
