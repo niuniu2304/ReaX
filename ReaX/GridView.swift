@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GridView: View {
+    
+    // Change random cell to update to green or red so that the user can tap on it and get points
+    
     @State var cell: [CellView] = [
         CellView(cellState: .green), CellView(cellState: .normal), CellView(cellState: .black),
         CellView(cellState: .normal),CellView(cellState: .red), CellView(cellState: .green),
