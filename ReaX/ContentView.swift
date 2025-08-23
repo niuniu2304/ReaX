@@ -24,47 +24,57 @@ struct ContentView: View {
     @Query private var items: [Item]
 
     var body: some View {
-        // TODO: Playbutton
+//        NavigationSplitView {
+//            List {
+//                ForEach(items) { item in
+//                    NavigationLink {
+//                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
+//                    } label: {
+//                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+//                    }
+//                }
+//                .onDelete(perform: deleteItems)
+//            }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    EditButton()
+//                }
+//                ToolbarItem {
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
+//                }
+//            }
+//        } detail: {
+//            Text("Select an item")
+//        }
         
-        //LAYOUT:
+//        GridView(cell: 0)
         
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //–––Current Score–––––––––––––––––––Best Score–––
-        //–––Current Score–––––Timer–––––––––Best Score––-
-        //–––––––––––––––––––––Timer––––––––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //–––––––__________–––__________–––__________–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|________|–––|________|–––|________|–––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //–––––––__________–––__________–––__________–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|________|–––|________|–––|________|–––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //–––––––__________–––__________–––__________–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|        |–––|        |–––|        |–––––
-        //–––––––|________|–––|________|–––|________|–––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //–––––––––––––––––––––_________––––––––––––––––––
-        //––––––––––––––––––––|         |–––––––––––––––––
-        //––––––––––––––––––––|  Pause  |–––––––––––––––––
-        //––––––––––––––––––––|  Button |–––––––––––––––––
-        //––––––––––––––––––––|_________|–––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
-        //––––––––––––––––––––––––––––––––––––––––––––––––
+        // Make a overlay or a button to a score view
+    }
+
+    private func addItem() {
+        withAnimation {
+            let newItem = Item(timestamp: Date(), score: 0)
+            modelContext.insert(newItem)
+        }
+    }
+
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            for index in offsets {
+                modelContext.delete(items[index])
+            }
+        }
+    }
+    private func checkIfLose() -> Bool{
+        return false
+    }
+    private func timer() {
         
-        
+    }
+    private func updateGrid() {
         
     }
 }

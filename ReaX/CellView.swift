@@ -49,7 +49,8 @@ struct CellView: View {
             }
         } label: {
             RoundedRectangle(cornerRadius: 20)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(width: 120, height: 120)
+//                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .foregroundStyle(cellState.backgroundColor)
                 .padding()
         }
