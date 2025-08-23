@@ -6,10 +6,23 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ScoresView: View {
+    
+    @Environment(\.modelContext) private var modelContext
+    @Query private var items: [Item]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationSplitView {
+            List {
+                ForEach(items) { item in
+                    Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                }
+            }
+        } detail: {
+            Text("Select an item")
+        }
     }
 }
 
