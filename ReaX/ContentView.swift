@@ -20,7 +20,7 @@ import SwiftData
 
 struct ContentView: View {
 
-    @StateObject var gridViewModel: CellViewModel = CellViewModel()
+    @StateObject var gridViewModel: GridViewModel = GridViewModel()
     @State private var score: Int = 0
 
     @Environment(\.modelContext) private var modelContext
