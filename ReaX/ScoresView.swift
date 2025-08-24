@@ -2,8 +2,8 @@
 //  ScoresView.swift
 //  ReaX
 //
-//  Created by Yao on 15/08/2025.
-
+//  Created by Yao on 18/08/2025.
+//
 
 import SwiftUI
 import SwiftData

@@ -74,6 +74,7 @@ struct HomeView: View {
 }
 
 #Preview {
+
     ContentView()
 //    HomeView()
 }
