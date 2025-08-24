@@ -13,7 +13,7 @@ final class Scores {
     var timestamp: Date
     var score: Int 
     
-    init(timestamp: Date, score: Int, isMax: Bool) {
+    init(timestamp: Date, score: Int) {
         self.timestamp = timestamp
         self.score = score
     }
