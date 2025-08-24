@@ -11,7 +11,7 @@ import SwiftUICore
 
 struct CellModel: Identifiable {
     let id: String = UUID().uuidString
-    var backgroundColor: cellStates
+    var backgroundColor: cellStates = .normal
     
     enum cellStates {
         case normal
