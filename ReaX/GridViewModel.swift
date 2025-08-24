@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CellViewModel: ObservableObject {
+class GridViewModel: ObservableObject {
     @Published var grid: [CellModel] = [
         CellModel(), CellModel(), CellModel(),
         CellModel(), CellModel(), CellModel(),
