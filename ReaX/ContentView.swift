@@ -36,6 +36,11 @@ struct ContentView: View {
             Text("Placeholder while playing")
         } else {
             HomeView(isPlaying: $isPlaying)
+                .onAppear {
+                    //Creates the first score so that the program doesn't crash
+                    let score = Scores(timestamp: .now, score: 0)
+                    modelContext.insert(score)
+                }
         }
         
     }
