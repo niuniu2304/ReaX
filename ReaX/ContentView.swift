@@ -24,7 +24,7 @@ struct ContentView: View {
     @State private var score: Int = 0
 
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var scores: [Scores]
     @State var isPlaying: Bool = false
 
     var body: some View {
@@ -51,5 +51,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: Scores.self, inMemory: true)
 }

@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-final class Item {
+final class Scores {
     var timestamp: Date
     var score: Int
     var isMax: Bool
