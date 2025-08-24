@@ -11,13 +11,17 @@ import SwiftData
 struct ScoresView: View {
     
     @Environment(\.modelContext) private var modelContext
-    @Query private var scores: [Scores]
+    @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
         NavigationSplitView {
             List {
                 ForEach(scores) { score in
-                    Text(score.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                    HStack {
+                        VStack() {
+                            Text(score.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                        }
+                    }
                 }
             }
         } detail: {
