@@ -12,9 +12,11 @@ import SwiftData
 final class Item {
     var timestamp: Date
     var score: Int
+    var isMax: Bool
     
-    init(timestamp: Date, score: Int) {
+    init(timestamp: Date, score: Int, isMax: Bool) {
         self.timestamp = timestamp
         self.score = score
+        self.isMax = isMax
     }
 }
