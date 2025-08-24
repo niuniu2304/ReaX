@@ -32,8 +32,8 @@ struct ContentView: View {
         
         if isPlaying {
             
-            // PlayView()
-            Text("Placeholder while playing")
+            PlayView()
+            
         } else {
             HomeView(isPlaying: $isPlaying)
                 .onAppear {
