@@ -6,62 +6,59 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct PlayView: View {
+    
+    @State var actionButton: Bool = false
+    @State private var currentScore: Int = 222
+    
+    
     var body: some View {
-        VStack(spacing: 50){
-            // On left corner add the overal best score and on the right corner add a button (tab button like a system icon) to go to the  scoresView
-            Text("ReaX")
-                .font(.system(size: 50, weight: .bold, design: .default))
-                .padding(.bottom, 10)
+        VStack(){
             
-            // GridView
-            VStack{
-                HStack{
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.red)
-                        .frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray)
-                        .frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray)
-                        .frame(width: 120, height: 120)
+            
+            HStack {
+                VStack(){
+                    Text("Top Score:")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .padding(.leading,10)
+                        Text("1283")
+                        .font(.system(size: 40, weight: .bold, design: .rounded))
+                        .padding(.leading, 10)
                 }
-                HStack{
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray)
-                        .frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.green)
-                        .frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray)
-                        .frame(width: 120, height: 120)
-                }
-                HStack{
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.gray)
-                        .frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.red)
-                        .frame(width: 120, height: 120)
-                    RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.green)
-                        .frame(width: 120, height: 120)
+                
+                Spacer()
+                
+                VStack {
+                    Text("Score:  ")
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .padding(.trailing, 10)
+                    Text("\(currentScore)")
+                        .font(.system(size: 40, weight: .bold, design: .default))
+                        .padding(.trailing, 10)
                 }
             }
+            .padding()
+            
+            VStack {
+                Text("00:00")
+                .font(.system(size: 70, weight: .bold, design: .default))
+            }
+            
+            GridView()
             
             Button {
-                print("i")
+                actionButton.toggle()
             } label: {
                 Circle()
-                    .fill(Color.mint)
+                    .fill(actionButton ? Color.mint: Color.red)
                     .frame(width: 150, height: 100)
                     .overlay {
-                        Image(systemName: "pause")
-                            .frame(width: 80, height: 80)
+                        Image(systemName: actionButton ? "play" : "pause")
+                            .frame(width: 100, height: 100)
                     }
+                    .padding(.top, 50)
             }
         }
 
