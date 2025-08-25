@@ -67,4 +67,5 @@ struct PlayView: View {
 
 #Preview {
     PlayView()
+        .modelContainer(for: Scores.self, inMemory: true)
 }

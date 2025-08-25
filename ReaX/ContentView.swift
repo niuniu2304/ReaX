@@ -25,15 +25,19 @@ struct ContentView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Query private var scores: [Scores]
-    @State var isPlaying: Bool = false
+    @AppStorage("isPlaying") var isPlaying: Bool?
 
     var body: some View {
 
         
-        if isPlaying {
-            
-            PlayView()
-            
+        if let isPlaying {
+            if isPlaying == true {
+                PlayView()
+            } else {
+                HomeView(isPlaying: $isPlaying)
+                    .onAppear {
+                    }
+            }
         } else {
             HomeView(isPlaying: $isPlaying)
                 .onAppear {
