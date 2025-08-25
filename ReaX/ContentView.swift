@@ -38,8 +38,10 @@ struct ContentView: View {
             HomeView(isPlaying: $isPlaying)
                 .onAppear {
                     //Creates the first score so that the program doesn't crash
-                    let score = Scores(timestamp: .now, score: 0)
-                    modelContext.insert(score)
+                    if scores.isEmpty{
+                        let score = Scores(timestamp: .now, score: 0)
+                        modelContext.insert(score)
+                    }
                 }
         }
         
