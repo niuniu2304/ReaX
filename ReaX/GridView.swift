@@ -10,31 +10,32 @@ import SwiftUI
 struct GridView: View {
     
     // Change random cell to update to green or red so that the user can tap on it and get points
+    @StateObject var gridViewModel: GridViewModel = GridViewModel()
     
-    @State var cell: [CellView] = [
-        CellView(cellState: .green), CellView(cellState: .normal), CellView(cellState: .black),
-        CellView(cellState: .normal),CellView(cellState: .red), CellView(cellState: .green),
-        CellView(cellState: .black), CellView(cellState: .green), CellView(cellState: .red),
-        
-    ]
     var body: some View {
         
         Grid() {
             GridRow {
                 ForEach(0..<3, id: \.self) { index in
-                    self.cell[index]
+                    CellView(cellModel: self.gridViewModel.grid[index])
                 }
             }
             GridRow {
                 ForEach(3..<6, id: \.self) { index in
-                    self.cell[index]
+                    CellView(cellModel: self.gridViewModel.grid[index])
                 }
             }
             GridRow {
                 ForEach(6..<9, id: \.self) { index in
-                    self.cell[index]
+                    CellView(cellModel: self.gridViewModel.grid[index])
                 }
             }
+        }
+        .onAppear(){
+            gridViewModel.startGame()
+        }
+        .onDisappear {
+            gridViewModel.endGame(score: 0)
         }
         
     }
