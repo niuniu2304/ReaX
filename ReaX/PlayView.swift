@@ -59,8 +59,8 @@ struct PlayView: View {
                         Image(systemName: actionButton ? "play" : "pause")
                             .frame(width: 100, height: 100)
                     }
-                    .padding(.top, 50)
             }
+            .padding(.top, 50)
         }
 
     }

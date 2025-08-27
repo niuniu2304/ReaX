@@ -25,6 +25,8 @@ struct ContentView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Query private var scores: [Scores]
+    
+    // The App Storage causes the app to crash cause it is stuck on the playView where there is no Scores
     @AppStorage("isPlaying") var isPlaying: Bool?
 
     var body: some View {
