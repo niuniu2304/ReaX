@@ -10,11 +10,10 @@ import SwiftUI
 
 class GridViewModel: ObservableObject {
     @Published var score: Int = 0
-    
     @Published var grid: [CellModel] = [
-        CellModel(cellState: .red), CellModel(), CellModel(),
-        CellModel(), CellModel(), CellModel(),
-        CellModel(), CellModel(), CellModel(),
+        CellModel(cellState: .red), CellModel(), CellModel(cellState: .red),
+        CellModel(cellState: .black), CellModel(cellState: .green), CellModel(),
+        CellModel(cellState: .green), CellModel(), CellModel(cellState: .green),
     ]
     @Published var isPlaying: Bool = false
     

@@ -10,9 +10,11 @@ import SwiftUI
 struct GridView: View {
     
     // Change random cell to update to green or red so that the user can tap on it and get points
-    @StateObject var gridViewModel: GridViewModel = GridViewModel()
+    @ObservedObject var gridViewModel: GridViewModel
     
     var body: some View {
+        
+        
         
         Grid() {
             GridRow {
@@ -42,5 +44,5 @@ struct GridView: View {
 }
 
 #Preview {
-    GridView()
+    PlayView()
 }

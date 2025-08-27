@@ -20,16 +20,11 @@ import SwiftData
 
 struct ContentView: View {
 
-    @StateObject var gridViewModel: GridViewModel = GridViewModel()
-    @State private var score: Int = 0
-
     @Environment(\.modelContext) private var modelContext
-    @Query private var scores: [Scores]
     @State var isPlaying: Bool = false
 
     var body: some View {
 
-        
         if isPlaying {
             
             PlayView()
@@ -38,7 +33,7 @@ struct ContentView: View {
             HomeView(isPlaying: $isPlaying)
                 .onAppear {
                     //Creates the first score so that the program doesn't crash
-                    let score = Scores(timestamp: .now, score: 0)
+                    let score = Scores(timestamp: .now, score: 280)
                     modelContext.insert(score)
                 }
         }

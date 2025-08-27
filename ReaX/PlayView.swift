@@ -10,6 +10,8 @@ import SwiftData
 
 struct PlayView: View {
     
+    @StateObject var gridViewModel: GridViewModel = GridViewModel()
+    
     @State var actionButton: Bool = false
     @State private var currentScore: Int = 0
     @Query(sort: \Scores.score) private var scores: [Scores]
@@ -47,7 +49,7 @@ struct PlayView: View {
                 .font(.system(size: 70, weight: .bold, design: .default))
             }
             
-            GridView()
+            GridView(gridViewModel: gridViewModel)
             
             Button {
                 actionButton.toggle()
@@ -59,8 +61,8 @@ struct PlayView: View {
                         Image(systemName: actionButton ? "play" : "pause")
                             .frame(width: 100, height: 100)
                     }
-                    .padding(.top, 50)
             }
+            .padding(.top, 50)
         }
 
     }
