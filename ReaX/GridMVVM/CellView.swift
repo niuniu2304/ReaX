@@ -15,7 +15,7 @@ struct CellView : View {
     var body: some View {
         Button {
             if cellModel.cellState.backgroundColor == .red {
-                // Deduct points from the score variable (+ make the score variable an environment variable accessible by all are use a @Binding to change it's value
+                // Deduct points from the score variable (+ make the score variable an environment variable accessible by all are use a @Binding to change it's value Or just make the user lose
                 // Maybe use an animation to transition from the color changes
                 
                 //Minus 2 points if clicked on the red button
