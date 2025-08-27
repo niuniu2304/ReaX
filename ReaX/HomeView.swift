@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @Binding var isPlaying: Bool?
+    @Binding var isPlaying: Bool
     
     var body: some View {
         

@@ -27,19 +27,13 @@ struct ContentView: View {
     @Query private var scores: [Scores]
     
     // The App Storage causes the app to crash cause it is stuck on the playView where there is no Scores
-    @AppStorage("isPlaying") var isPlaying: Bool?
+    @State var isPlaying: Bool = false
 
     var body: some View {
 
         
-        if let isPlaying {
-            if isPlaying == true {
+        if isPlaying {
                 PlayView()
-            } else {
-                HomeView(isPlaying: $isPlaying)
-                    .onAppear {
-                    }
-            }
         } else {
             HomeView(isPlaying: $isPlaying)
                 .onAppear {
