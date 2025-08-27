@@ -42,8 +42,9 @@ struct ContentView: View {
                     modelContext.insert(score)
                 }
         }
-        
     }
+    
+    
     private func checkIfLose() -> Bool{
         return false
     }
