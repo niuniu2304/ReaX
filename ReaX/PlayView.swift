@@ -12,13 +12,14 @@ struct PlayView: View {
     
     @StateObject var gridViewModel: GridViewModel = GridViewModel()
     
+    @AppStorage("score") var currentScore: Int?
     @State var actionButton: Bool = false
-    @State private var currentScore: Int = 0
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
         VStack(){
             
+            // When the view changes ( the user get's or lose points from the game) change the currentScore to gridViewModel.score
             
             HStack {
                 VStack(){
@@ -37,7 +38,7 @@ struct PlayView: View {
                     Text("Score:  ")
                         .font(.system(size: 20, weight: .bold, design: .default))
                         .padding(.trailing, 10)
-                    Text("\(currentScore)")
+                    Text("\(scores.isEmpty ? 0: currentScore ?? 0)")
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .padding(.trailing, 10)
                 }

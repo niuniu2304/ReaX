@@ -9,12 +9,18 @@ import SwiftUI
 
 struct CellView : View {
     @State var cellModel: CellModel
+    // Needs to connect it to gridView
+    @ObservedObject var gridViewModel: GridViewModel = GridViewModel()
     
     var body: some View {
         Button {
             if cellModel.cellState.backgroundColor == .red {
                 // Deduct points from the score variable (+ make the score variable an environment variable accessible by all are use a @Binding to change it's value
                 // Maybe use an animation to transition from the color changes
+                
+                //Minus 2 points if clicked on the red button
+                gridViewModel.score -= 2
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
                     self.cellModel.cellState = .black
                 }
