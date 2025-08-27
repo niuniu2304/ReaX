@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 class GridViewModel: ObservableObject {
     @Published var score: Int = 0
