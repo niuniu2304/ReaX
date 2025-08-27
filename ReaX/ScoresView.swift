@@ -19,7 +19,7 @@ struct ScoresView: View {
                 ForEach(scores) { score in
                     HStack {
                         VStack() {
-                            Text(score.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                            Text(score.timestamp.formatted(date: .numeric, time: .omitted))
                         }
                     }
                 }

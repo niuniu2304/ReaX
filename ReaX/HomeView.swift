@@ -76,5 +76,7 @@ struct HomeView: View {
 #Preview {
 
     ContentView()
+        .modelContainer(for: Scores.self, inMemory: true)
+
 //    HomeView()
 }
