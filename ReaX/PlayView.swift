@@ -24,7 +24,7 @@ struct PlayView: View {
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding(.leading,10)
                     // Works because we inserted a default score in the begening using a onAppear (I Have know Idea if it will continue to insert into the conainer or it will just insert a default value for once (I would like that when we lunch the app for the first time, we insert a default value but then we don't insert default values) in contentView
-                    Text("\(scores[0].score)")
+                    Text("\(scores.isEmpty ? 0 :scores[0].score)")
                         .font(.system(size: 40, weight: .bold, design: .rounded))
                         .padding(.leading, 10)
                 }
