@@ -8,13 +8,25 @@
 import Foundation
 
 class GridViewModel: ObservableObject {
+    
+    enum timerState {
+        case start
+        case stop
+        case end
+    }
+    
     @Published var score: Int = 0
+    private var time: Double = 0
+    @Published var finalTime: String = ""
+    var timer = Timer()
+    @Published var timerState: timerState = .stop
+    
+    
     @Published var grid: [CellModel] = [
         CellModel(cellState: .red), CellModel(), CellModel(cellState: .red),
         CellModel(cellState: .black), CellModel(cellState: .green), CellModel(),
         CellModel(cellState: .green), CellModel(), CellModel(cellState: .green),
     ]
-    @Published var isPlaying: Bool = false
     
     // If on Tap
     func onTap(cellIndex: Int) {
@@ -37,12 +49,23 @@ class GridViewModel: ObservableObject {
     
     func startGame() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
-            self.isPlaying = true
+            self.timerState = .start
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
+                self.time += 0.1
+            })
         }
+    }
+    
+    func pause(){
+        timer.invalidate()
+        self.timerState = .stop
+        
     }
     
     func endGame(score: Int) {
         self.score = score
-        isPlaying = false
+        self.timerState = .end
+        self.timer.invalidate()
+        self.finalTime = String(format:"%.2f", time)
     }
 }

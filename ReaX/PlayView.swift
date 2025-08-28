@@ -52,18 +52,40 @@ struct PlayView: View {
             
             GridView(gridViewModel: gridViewModel)
             
-            Button {
-                actionButton.toggle()
-            } label: {
-                Circle()
-                    .fill(actionButton ? Color.mint: Color.red)
-                    .frame(width: 150, height: 100)
-                    .overlay {
-                        Image(systemName: actionButton ? "play" : "pause")
-                            .frame(width: 100, height: 100)
-                    }
+            
+            switch gridViewModel.timerState {
+            case .start:
+                Button {
+                    gridViewModel.timerState = .stop
+                    
+                } label: {
+                    Circle()
+                        .fill(Color.mint)
+                        .frame(width: 150, height: 100)
+                        .overlay {
+                            Image(systemName: "pause")
+                                .frame(width: 100, height: 100)
+                        }
+                }
+                .padding(.top, 50)
+            case .stop:
+                Button {
+                    gridViewModel.timerState = .start
+                    
+                } label: {
+                    Circle()
+                        .fill(Color.red)
+                        .frame(width: 150, height: 100)
+                        .overlay {
+                            Image(systemName: "play")
+                                .frame(width: 100, height: 100)
+                        }
+                }
+                .padding(.top, 50)
+            case .end:
+                // Show gameOver Scheet
+                ScoresView()
             }
-            .padding(.top, 50)
         }
 
     }

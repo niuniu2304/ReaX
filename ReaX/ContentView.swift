@@ -33,7 +33,7 @@ struct ContentView: View {
             HomeView(isPlaying: $isPlaying)
                 .onAppear {
                     //Creates the first score so that the program doesn't crash
-                    let score = Scores(timestamp: .now, score: 280)
+                    let score = Scores(timestamp: .now, score: 280, time: "203")
                     modelContext.insert(score)
                 }
         }
