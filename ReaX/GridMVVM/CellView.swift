@@ -10,7 +10,7 @@ import SwiftUI
 struct CellView : View {
     @State var cellModel: CellModel
     // Needs to connect it to gridView
-    @ObservedObject var gridViewModel: GridViewModel = GridViewModel()
+    @StateObject var gridViewModel: GridViewModel
     
     var body: some View {
         Button {
@@ -43,5 +43,5 @@ struct CellView : View {
 }
 
 #Preview {
-    CellView(cellModel: CellModel())
+    CellView(cellModel: CellModel(), gridViewModel: GridViewModel())
 }

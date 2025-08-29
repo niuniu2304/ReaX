@@ -23,7 +23,8 @@ class GridViewModel: ObservableObject {
     @Published var finalTime: String = ""
     
     @Published var score: Int = 0
-    @Published var timerState: timerState = .stop
+    @Published var countDown: Int = 3
+    @Published var timerState: timerState = .start
     
     
     @Published var grid: [CellModel] = [
@@ -52,25 +53,28 @@ class GridViewModel: ObservableObject {
     }
     
     func startGame() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
             self.timerState = .start
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] timer in
-                self.seconds += 1
-                if self.seconds == 60 {
-                    self.seconds = 0
-                    self.minutes += 1
-                    if self.minutes == 60 {
-                        self.win = true
-                        // Needs to get the score from th game
-                        self.endGame(score: 394)
+                if countDown != 0 {
+                    countDown -= 1
+                }else {
+                    self.seconds += 1
+                    if self.seconds == 60 {
+                        self.seconds = 0
+                        self.minutes += 1
+                        if self.minutes == 60 {
+                            self.win = true
+                            // Needs to get the score from th game
+                            self.endGame(score: 394)
+                        }
                     }
+                    self.finalTime = String(format:"%.2d:%.2d", self.minutes, self.seconds)
                 }
-                self.finalTime = String(format:"%.2d:%.2d", self.minutes, self.seconds)
             })
-        }
     }
     
     func pause(){
+        countDown = 3
         timer.invalidate()
         self.timerState = .stop
         

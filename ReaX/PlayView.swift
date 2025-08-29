@@ -14,6 +14,7 @@ struct PlayView: View {
     
     @AppStorage("score") var currentScore: Int?
     @State var actionButton: Bool = false
+    @Binding var isPlaying: Bool
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
@@ -26,7 +27,6 @@ struct PlayView: View {
                     Text("Top Score:")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding(.leading,10)
-                    // Works because we inserted a default score in the begening using a onAppear (I Have know Idea if it will continue to insert into the conainer or it will just insert a default value for once (I would like that when we lunch the app for the first time, we insert a default value but then we don't insert default values) in contentView
                     Text("\(scores.isEmpty ? 0:scores[0].score)")
                         .font(.system(size: 40, weight: .bold, design: .rounded))
                         .padding(.leading, 10)
@@ -62,10 +62,17 @@ struct PlayView: View {
                         .fill(Color.mint)
                         .frame(width: 150, height: 100)
                         .overlay {
-                            Image(systemName: "pause")
-                                .frame(width: 100, height: 100)
+                            if gridViewModel.countDown != 0 {
+                                Text("\(gridViewModel.countDown)")
+                                    .frame(width: 100, height: 100)
+                            }
+                            else {
+                                Image(systemName: "pause")
+                                    .frame(width: 100, height: 100)
+                            }
                         }
                 }
+                .disabled(gridViewModel.countDown != 3 && gridViewModel.countDown != 0)
                 .padding(.top, 50)
             case .stop:
                 Button {
@@ -91,6 +98,6 @@ struct PlayView: View {
 }
 
 #Preview {
-    PlayView()
+    PlayView(isPlaying: ContentView().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
 }

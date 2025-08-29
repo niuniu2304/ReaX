@@ -19,17 +19,17 @@ struct GridView: View {
         Grid() {
             GridRow {
                 ForEach(0..<3, id: \.self) { index in
-                    CellView(cellModel: self.gridViewModel.grid[index])
+                    CellView(cellModel: self.gridViewModel.grid[index], gridViewModel: gridViewModel)
                 }
             }
             GridRow {
                 ForEach(3..<6, id: \.self) { index in
-                    CellView(cellModel: self.gridViewModel.grid[index])
+                    CellView(cellModel: self.gridViewModel.grid[index], gridViewModel: gridViewModel)
                 }
             }
             GridRow {
                 ForEach(6..<9, id: \.self) { index in
-                    CellView(cellModel: self.gridViewModel.grid[index])
+                    CellView(cellModel: self.gridViewModel.grid[index], gridViewModel: gridViewModel)
                 }
             }
         }
@@ -44,5 +44,5 @@ struct GridView: View {
 }
 
 #Preview {
-    PlayView()
+    PlayView(isPlaying: ContentView().$isPlaying)
 }
