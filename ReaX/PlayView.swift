@@ -60,7 +60,7 @@ struct PlayView: View {
                 } label: {
                     Circle()
                         .fill(Color.mint)
-                        .frame(width: 150, height: 100)
+                        .frame(height: 100)
                         .overlay {
                             if gridViewModel.countDown != 0 {
                                 Text("\(gridViewModel.countDown)")
@@ -75,19 +75,34 @@ struct PlayView: View {
                 .disabled(gridViewModel.countDown != 3 && gridViewModel.countDown != 0)
                 .padding(.top, 50)
             case .stop:
-                Button {
-                    gridViewModel.startGame()
+                HStack (alignment: .center){
                     
-                } label: {
-                    Circle()
-                        .fill(Color.red)
-                        .frame(width: 150, height: 100)
-                        .overlay {
-                            Image(systemName: "play")
-                                .frame(width: 100, height: 100)
-                        }
+                    Button {
+                        gridViewModel.endGame(score: 22)
+                    } label: {
+                        Circle()
+                            .fill(Color.yellow)
+                            .frame(height: 100)
+                            .overlay {
+                                Image(systemName: "house")
+                                    .frame(width: 100, height: 100)
+                            }
+                    }
+                    
+                    Button {
+                        gridViewModel.startGame()
+                    } label: {
+                        Circle()
+                            .fill(Color.red)
+                            .frame(height: 100)
+                            .overlay {
+                                Image(systemName: "play")
+                                    .frame(width: 100, height: 100)
+                            }
+                    }
                 }
                 .padding(.top, 50)
+
                 
                 // Maybe add a navigationLink to the homeScreen and alert the user that the data from the partie won't be appended to the container (or maybe append it like make the button action direcly switch to .end state and go to the homePage)
             case .end:
