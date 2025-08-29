@@ -88,6 +88,8 @@ struct PlayView: View {
                         }
                 }
                 .padding(.top, 50)
+                
+                // Maybe add a navigationLink to the homeScreen and alert the user that the data from the partie won't be appended to the container (or maybe append it like make the button action direcly switch to .end state and go to the homePage)
             case .end:
                 // Show gameOver Scheet
                 ScoresView()
