@@ -53,6 +53,9 @@ class GridViewModel: ObservableObject {
     }
     
     func startGame() {
+        
+        // Make logic to make 1 or 2 cells randomly change state to green or red every randome timeIntervall
+        
             self.timerState = .start
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] timer in
                 if countDown != 0 {
