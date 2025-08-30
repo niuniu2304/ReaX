@@ -15,6 +15,8 @@ class GridViewModel: ObservableObject {
         case end
     }
     
+    @Published var life: Int = 3
+    
     var timer = Timer()
     @Published var win: Bool = false
     @Published var time: Double = 0.0
