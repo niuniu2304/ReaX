@@ -17,27 +17,15 @@ import SwiftData
 
 struct ContentView: View {
 
-    @Environment(\.modelContext) private var modelContext
+    
     @State var isPlaying: Bool = false
 
     var body: some View {
-
         if isPlaying {
             PlayView(isPlaying: $isPlaying)
         } else {
             HomeView(isPlaying: $isPlaying)
         }
-    }
-    
-    
-    private func checkIfLose() -> Bool{
-        return false
-    }
-    private func timer() {
-        
-    }
-    private func updateGrid() {
-        
     }
 }
 
