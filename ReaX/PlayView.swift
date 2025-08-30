@@ -33,6 +33,12 @@ struct PlayView: View {
                 }
                 
                 Spacer()
+                ForEach(0..<gridViewModel.life) { life in
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .foregroundStyle(Color.red)
+                }
+                Spacer()
                 
                 VStack {
                     Text("Score:  ")
