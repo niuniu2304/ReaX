@@ -9,51 +9,25 @@ import SwiftUI
 import SwiftData
 
 /*
- TODO: Finish the GridView
- TODO: Finish the contentView with the best score, a timer, a play button(to start the game), the grid, and maybe a pause button on the bottom
  TODO: Make the logic for the contentView to work(start/stop button, play button).
- TODO: make grid view using a lazyVGrid(or something like that)
- TODO: add a button to go to the scoresView to view all the scores
  TODO: Finish the scoresView by adding a List(View) of all the previous scores and the best score on the top along side with when it was realised
- TODO:
+ TODO: Finish the life feature 3 life for each time we got one wrong we substract one life
+ TODO: Finish the gameOverView
  */
 
 struct ContentView: View {
 
-    @StateObject var gridViewModel: GridViewModel = GridViewModel()
-    @State private var score: Int = 0
-
     @Environment(\.modelContext) private var modelContext
-    @Query private var scores: [Scores]
-    
     // The App Storage causes the app to crash cause it is stuck on the playView where there is no Scores
     @State var isPlaying: Bool = false
 
     var body: some View {
-
         
         if isPlaying {
-                PlayView()
+            PlayView(isPlaying: $isPlaying)
         } else {
             HomeView(isPlaying: $isPlaying)
-                .onAppear {
-                    //Creates the first score so that the program doesn't crash
-                    if scores.isEmpty{
-                        let score = Scores(timestamp: .now, score: 0)
-                        modelContext.insert(score)
-                    }
-                }
         }
-        
-    }
-    private func checkIfLose() -> Bool{
-        return false
-    }
-    private func timer() {
-        
-    }
-    private func updateGrid() {
-        
     }
 }
 

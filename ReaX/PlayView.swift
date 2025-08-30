@@ -10,32 +10,41 @@ import SwiftData
 
 struct PlayView: View {
     
+    @StateObject var gridViewModel: GridViewModel = GridViewModel()
+    
+    @AppStorage("score") var currentScore: Int?
     @State var actionButton: Bool = false
-    @State private var currentScore: Int = 0
+    @Binding var isPlaying: Bool
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
         VStack(){
             
+            // When the view changes ( the user get's or lose points from the game) change the currentScore to gridViewModel.score
             
             HStack {
                 VStack(){
                     Text("Top Score:")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .padding(.leading,10)
-                    // Works because we inserted a default score in the begening using a onAppear (I Have know Idea if it will continue to insert into the conainer or it will just insert a default value for once (I would like that when we lunch the app for the first time, we insert a default value but then we don't insert default values) in contentView
-                    Text("\(scores.isEmpty ? 0 :scores[0].score)")
+                    Text("\(scores.isEmpty ? 0:scores[0].score)")
                         .font(.system(size: 40, weight: .bold, design: .rounded))
                         .padding(.leading, 10)
                 }
                 
+                Spacer()
+                ForEach(0..<gridViewModel.life) { life in
+                    Image(systemName: "heart.fill")
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .foregroundStyle(Color.red)
+                }
                 Spacer()
                 
                 VStack {
                     Text("Score:  ")
                         .font(.system(size: 20, weight: .bold, design: .default))
                         .padding(.trailing, 10)
-                    Text("\(currentScore)")
+                    Text("\(scores.isEmpty ? 0: currentScore ?? 0)")
                         .font(.system(size: 40, weight: .bold, design: .default))
                         .padding(.trailing, 10)
                 }
@@ -43,30 +52,77 @@ struct PlayView: View {
             .padding()
             
             VStack {
-                Text("00:00")
-                .font(.system(size: 70, weight: .bold, design: .default))
+                Text(gridViewModel.finalTime == "" ? "00:00" : gridViewModel.finalTime)
+                    .font(.system(size: 70, weight: .bold, design: .default))
             }
             
-            GridView()
+            GridView(gridViewModel: gridViewModel)
             
-            Button {
-                actionButton.toggle()
-            } label: {
-                Circle()
-                    .fill(actionButton ? Color.mint: Color.red)
-                    .frame(width: 150, height: 100)
-                    .overlay {
-                        Image(systemName: actionButton ? "play" : "pause")
-                            .frame(width: 100, height: 100)
+            
+            switch gridViewModel.timerState {
+            case .start:
+                Button {
+                    gridViewModel.pause()
+                } label: {
+                    Circle()
+                        .fill(Color.mint)
+                        .frame(height: 100)
+                        .overlay {
+                            if gridViewModel.countDown != 0 {
+                                Text("\(gridViewModel.countDown)")
+                                    .frame(width: 100, height: 100)
+                            }
+                            else {
+                                Image(systemName: "pause")
+                                    .frame(width: 100, height: 100)
+                            }
+                        }
+                }
+                .disabled(gridViewModel.countDown != 3 && gridViewModel.countDown != 0)
+                .padding(.top, 50)
+            case .stop:
+                HStack (alignment: .center){
+                    
+                    Button {
+                        gridViewModel.endGame(score: 22)
+                    } label: {
+                        Circle()
+                            .fill(Color.yellow)
+                            .frame(height: 100)
+                            .overlay {
+                                Image(systemName: "house")
+                                    .frame(width: 100, height: 100)
+                            }
                     }
+                    
+                    Button {
+                        gridViewModel.startGame()
+                    } label: {
+                        Circle()
+                            .fill(Color.red)
+                            .frame(height: 100)
+                            .overlay {
+                                Image(systemName: "play")
+                                    .frame(width: 100, height: 100)
+                            }
+                    }
+                }
+                .padding(.top, 50)
+
+                
+                // Maybe add a navigationLink to the homeScreen and alert the user that the data from the partie won't be appended to the container (or maybe append it like make the button action direcly switch to .end state and go to the homePage)
+            case .end:
+                // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
+                // Show gameOver Scheet
+                ScoresView()
             }
             .padding(.top, 50)
         }
-
+        
     }
 }
 
 #Preview {
-    PlayView()
+    PlayView(isPlaying: ContentView().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
 }
