@@ -116,7 +116,7 @@ struct PlayView: View {
                 // Show gameOver Scheet
                 ScoresView()
             }
-            .padding(.top, 50)
+            
         }
         
     }
