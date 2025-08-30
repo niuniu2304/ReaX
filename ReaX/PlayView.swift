@@ -112,6 +112,7 @@ struct PlayView: View {
                 
                 // Maybe add a navigationLink to the homeScreen and alert the user that the data from the partie won't be appended to the container (or maybe append it like make the button action direcly switch to .end state and go to the homePage)
             case .end:
+                // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
                 // Show gameOver Scheet
                 ScoresView()
             }
