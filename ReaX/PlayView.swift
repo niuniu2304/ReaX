@@ -117,7 +117,6 @@ struct PlayView: View {
                 ScoresView()
             }
         }
-        
     }
 }
 
