@@ -23,7 +23,7 @@ struct CellView : View {
                 gridViewModel.life -= 1
                 if gridViewModel.life == 0 {
                     // Add the data from the game to the container
-                    gridViewModel.timerState = .end
+                    gridViewModel.endGame(reset: false)
                 }
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2){
