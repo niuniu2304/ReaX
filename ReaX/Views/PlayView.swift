@@ -17,7 +17,6 @@ struct PlayView: View {
     
     var body: some View {
         VStack(){
-            
             HStack {
                 VStack(){
                     Text("Top Score:")
