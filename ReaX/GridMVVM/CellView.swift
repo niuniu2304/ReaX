@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CellView : View {
+    
     @State var cellModel: CellModel
-    // Needs to connect it to gridView
-    @StateObject var gridViewModel: GridViewModel
+    @EnvironmentObject var gridViewModel: GridViewModel
     
     var body: some View {
         Button {
@@ -48,5 +48,5 @@ struct CellView : View {
 }
 
 #Preview {
-    CellView(cellModel: CellModel(), gridViewModel: GridViewModel())
+    CellView(cellModel: CellModel())
 }

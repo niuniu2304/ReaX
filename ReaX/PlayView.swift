@@ -10,7 +10,7 @@ import SwiftData
 
 struct PlayView: View {
     
-    @StateObject var gridViewModel: GridViewModel = GridViewModel()
+    @EnvironmentObject var gridViewModel: GridViewModel
     
     @State var actionButton: Bool = false
     @Binding var isPlaying: Bool
@@ -56,7 +56,7 @@ struct PlayView: View {
                     .font(.system(size: 70, weight: .bold, design: .default))
             }
             
-            GridView(gridViewModel: gridViewModel)
+            GridView()
             
             
             switch gridViewModel.timerState {
@@ -122,6 +122,6 @@ struct PlayView: View {
 }
 
 #Preview {
-    PlayView(isPlaying: ContentView().$isPlaying)
+    PlayView(isPlaying: ReaXApp().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
 }

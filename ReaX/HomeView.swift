@@ -75,7 +75,7 @@ struct HomeView: View {
 
 #Preview {
 
-    ContentView()
+    HomeView(isPlaying: ReaXApp().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
 
 //    HomeView()
