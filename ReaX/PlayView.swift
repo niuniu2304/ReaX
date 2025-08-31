@@ -84,6 +84,8 @@ struct PlayView: View {
                 HStack (alignment: .center){
                     
                     NavigationLink {
+                        // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
+                        // Show gameOver Scheet
                         ScoresView()
                     } label: {
                         Circle()
