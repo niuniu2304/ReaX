@@ -11,6 +11,7 @@ struct GridView: View {
     
     // Change random cell to update to green or red so that the user can tap on it and get points
     @EnvironmentObject var gridViewModel: GridViewModel
+    @EnvironmentObject var timerViewModel: TimerViewModel
     
     var body: some View {
         
@@ -34,10 +35,10 @@ struct GridView: View {
             }
         }
         .onAppear(){
-            gridViewModel.startGame()
+            timerViewModel.startTimer()
         }
         .onDisappear {
-            gridViewModel.endGame(reset: false)
+            timerViewModel.endGame(reset: false)
         }
         
     }
