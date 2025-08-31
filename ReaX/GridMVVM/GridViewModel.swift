@@ -53,6 +53,14 @@ class GridViewModel: ObservableObject {
         }
     }
     
+    func changeRandomCells() {
+        // Change 1 or 2 random Cells 'color' in the grid for a random periode of timer between 0.2 to 1 seconds it lasts then
+        // Like grid[arbitrary number variable ].backgroundCOlor == (arbitrary color between red and green and black(-2 lives and more rare if possible)
+        // Then AsyncAfter... (arbitraryTime):
+        // grid[aribitrary number variable].backgroundCOlor = .normal
+        
+    }
+    
     func startGame() {
         
         // Make logic to make 1 or 2 cells randomly change state to green or red every randome timeIntervall
