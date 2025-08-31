@@ -124,4 +124,5 @@ struct PlayView: View {
 #Preview {
     PlayView(isPlaying: ReaXApp().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
+        .environmentObject(GridViewModel())
 }
