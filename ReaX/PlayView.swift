@@ -83,6 +83,7 @@ struct PlayView: View {
             case .stop:
                 HStack (alignment: .center){
                     
+                    // Needs to make the VIew NavigationView
                     NavigationLink {
                         // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
                         // Show gameOver Scheet
@@ -97,21 +98,9 @@ struct PlayView: View {
                             }
                     }
                     .onTapGesture {
-                        gridViewModel.timerState = .end
+                        gridViewModel.endGame(reset: false)
                     }
 
-                    
-                    Button {
-                        gridViewModel.endGame()
-                    } label: {
-                        Circle()
-                            .fill(Color.yellow)
-                            .frame(height: 100)
-                            .overlay {
-                                Image(systemName: "house")
-                                    .frame(width: 100, height: 100)
-                            }
-                    }
                     
                     Button {
                         gridViewModel.startGame()
