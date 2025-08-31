@@ -81,7 +81,7 @@ struct PlayView: View {
                             }
                         }
                 }
-                .disabled(gridViewModel.countDown != 3 && gridViewModel.countDown != 0)
+                .disabled(gridViewModel.countDown != 0)
                 .padding(.top, 50)
             case .stop:
                 HStack (alignment: .center){
