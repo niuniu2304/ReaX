@@ -33,21 +33,24 @@ struct PlayView: View {
                 }
                 
                 Spacer()
-                ForEach(0..<gridViewModel.life) { life in
-                    Image(systemName: "heart.fill")
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .foregroundStyle(Color.red)
+                HStack {
+                    ForEach(0..<gridViewModel.life, id: \.self) { life in
+                        Image(systemName: "heart.fill")
+                            .font(.system(size: 20, weight: .bold, design: .default))
+                            .foregroundStyle(Color.red)
+                    }
                 }
+                .padding(.trailing, 20)
+                
                 Spacer()
                 
                 VStack {
                     Text("Score:  ")
                         .font(.system(size: 20, weight: .bold, design: .default))
-                        .padding(.trailing, 10)
                     Text("\(scores.isEmpty ? 0: currentScore ?? 0)")
                         .font(.system(size: 40, weight: .bold, design: .default))
-                        .padding(.trailing, 10)
                 }
+                .padding(.trailing, 15)
             }
             .padding()
             
