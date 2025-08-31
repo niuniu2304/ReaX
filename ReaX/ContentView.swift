@@ -21,10 +21,12 @@ struct ContentView: View {
     @State var isPlaying: Bool = false
 
     var body: some View {
-        if isPlaying {
-            PlayView(isPlaying: $isPlaying)
-        } else {
-            HomeView(isPlaying: $isPlaying)
+        NavigationView {
+            if isPlaying {
+                PlayView(isPlaying: $isPlaying)
+            } else {
+                HomeView(isPlaying: $isPlaying)
+            }
         }
     }
 }
