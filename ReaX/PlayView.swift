@@ -11,8 +11,7 @@ import SwiftData
 struct PlayView: View {
     
     @EnvironmentObject var gridViewModel: GridViewModel
-    
-    @State var actionButton: Bool = false
+    @EnvironmentObject var timerViewModel: TimerViewModel
     @Binding var isPlaying: Bool
     @Query(sort: \Scores.score) private var scores: [Scores]
     
@@ -52,24 +51,24 @@ struct PlayView: View {
             .padding()
             
             VStack {
-                Text(gridViewModel.finalTime == "" ? "00:00" : gridViewModel.finalTime)
+                Text(timerViewModel.finalTime == "" ? "00:00" : timerViewModel.finalTime)
                     .font(.system(size: 70, weight: .bold, design: .default))
             }
             
             GridView()
             
             
-            switch gridViewModel.timerState {
+            switch timerViewModel.timerState {
             case .start:
                 Button {
-                    gridViewModel.pause()
+                    timerViewModel.pause()
                 } label: {
                     Circle()
                         .fill(Color.mint)
                         .frame(height: 100)
                         .overlay {
-                            if gridViewModel.countDown != 0 {
-                                Text("\(gridViewModel.countDown)")
+                            if timerViewModel.countDown != 0 {
+                                Text("\(timerViewModel.countDown)")
                                     .frame(width: 100, height: 100)
                             }
                             else {
@@ -78,7 +77,7 @@ struct PlayView: View {
                             }
                         }
                 }
-                .disabled(gridViewModel.countDown != 0)
+                .disabled(timerViewModel.countDown != 0)
                 .padding(.top, 50)
             case .stop:
                 HStack (alignment: .center){
@@ -98,12 +97,12 @@ struct PlayView: View {
                             }
                     }
                     .onTapGesture {
-                        gridViewModel.endGame(reset: false)
+                        timerViewModel.endGame(reset: false)
                     }
 
                     
                     Button {
-                        gridViewModel.startGame()
+                        timerViewModel.startTimer()
                     } label: {
                         Circle()
                             .fill(Color.red)
@@ -125,4 +124,5 @@ struct PlayView: View {
     PlayView(isPlaying: ReaXApp().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
         .environmentObject(GridViewModel())
+        .environmentObject(TimerViewModel())
 }

@@ -33,5 +33,4 @@ struct ScoresView: View {
 #Preview {
     ScoresView()
         .modelContainer(for: Scores.self, inMemory: true)
-        .environmentObject(GridViewModel())
 }

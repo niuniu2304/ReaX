@@ -32,6 +32,7 @@ struct ReaXApp: App {
     
     @State var isPlaying: Bool = false
     @StateObject var gridViewModel: GridViewModel = GridViewModel()
+    @StateObject var timerViewModel: TimerViewModel = TimerViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -43,6 +44,7 @@ struct ReaXApp: App {
                 }
             }
             .environmentObject(gridViewModel)
+            .environmentObject(timerViewModel)
         }
         .modelContainer(sharedModelContainer)
     }
