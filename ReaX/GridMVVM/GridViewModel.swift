@@ -19,7 +19,7 @@ class GridViewModel: ObservableObject {
     
     var timer = Timer()
     @Published var win: Bool = false
-    @Published var time: Double = 0.0
+    
     private var minutes = 0
     private var seconds = 0
     @Published var finalTime: String = ""
@@ -70,7 +70,7 @@ class GridViewModel: ObservableObject {
                         if self.minutes == 60 {
                             self.win = true
                             // Needs to get the score from th game
-                            self.endGame(score: 394)
+                            self.endGame()
                         }
                     }
                     self.finalTime = String(format:"%.2d:%.2d", self.minutes, self.seconds)
@@ -85,8 +85,7 @@ class GridViewModel: ObservableObject {
         
     }
     
-    func endGame(score: Int) {
-        self.score = score
+    func endGame() {
         self.timerState = .end
         self.timer.invalidate()
         self.finalTime = String(format:"%.2d:%.2d", minutes, seconds)
