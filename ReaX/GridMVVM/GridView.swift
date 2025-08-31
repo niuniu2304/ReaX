@@ -37,7 +37,7 @@ struct GridView: View {
             gridViewModel.startGame()
         }
         .onDisappear {
-            gridViewModel.endGame(score: 0)
+            gridViewModel.endGame()
         }
         
     }

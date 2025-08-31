@@ -86,8 +86,24 @@ struct PlayView: View {
             case .stop:
                 HStack (alignment: .center){
                     
+                    NavigationLink {
+                        ScoresView()
+                    } label: {
+                        Circle()
+                            .fill(Color.yellow)
+                            .frame(height: 100)
+                            .overlay {
+                                Image(systemName: "house")
+                                    .frame(width: 100, height: 100)
+                            }
+                    }
+                    .onTapGesture {
+                        gridViewModel.timerState = .end
+                    }
+
+                    
                     Button {
-                        gridViewModel.endGame(score: 22)
+                        gridViewModel.endGame()
                     } label: {
                         Circle()
                             .fill(Color.yellow)
@@ -115,8 +131,10 @@ struct PlayView: View {
             case .end:
                 // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
                 // Show gameOver Scheet
+                
                 Text("Game Over")
-                ScoresView()
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
+                    .foregroundStyle(Color.red)
             }
         }
     }
