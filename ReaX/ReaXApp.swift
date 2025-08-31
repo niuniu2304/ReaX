@@ -30,18 +30,11 @@ struct ReaXApp: App {
         }
     }()
     
-    @State var isPlaying: Bool = false
     @StateObject var gridViewModel: GridViewModel = GridViewModel()
 
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                if isPlaying {
-                    PlayView(isPlaying: $isPlaying)
-                } else {
-                    HomeView(isPlaying: $isPlaying)
-                }
-            }
+                ControlGroup()
             .environmentObject(gridViewModel)
         }
         .modelContainer(sharedModelContainer)

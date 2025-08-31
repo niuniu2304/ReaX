@@ -122,7 +122,7 @@ struct PlayView: View {
 }
 
 #Preview {
-    PlayView(isPlaying: ReaXApp().$isPlaying)
+    PlayView(isPlaying: ControlGroup().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
         .environmentObject(GridViewModel())
 }
