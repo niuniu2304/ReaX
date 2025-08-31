@@ -44,7 +44,7 @@ struct PlayView: View {
                 VStack {
                     Text("Score:  ")
                         .font(.system(size: 20, weight: .bold, design: .default))
-                    Text("\(scores.isEmpty ? 0: currentScore ?? 0)")
+                    Text("\(scores.isEmpty ? 0: gridViewModel.score)")
                         .font(.system(size: 40, weight: .bold, design: .default))
                 }
                 .padding(.trailing, 15)
