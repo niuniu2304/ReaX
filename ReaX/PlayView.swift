@@ -116,13 +116,6 @@ struct PlayView: View {
                 }
                 .padding(.top, 50)
 
-            case .end:
-                // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
-                // Show gameOver Scheet
-                
-                Text("Game Over")
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
-                    .foregroundStyle(Color.red)
             }
         }
     }

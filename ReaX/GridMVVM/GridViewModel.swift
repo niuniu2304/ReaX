@@ -12,7 +12,6 @@ class GridViewModel: ObservableObject {
     enum timerState {
         case start
         case stop
-        case end
     }
     
     @Published var life: Int = 3
@@ -70,7 +69,7 @@ class GridViewModel: ObservableObject {
                         if self.minutes == 60 {
                             self.win = true
                             // Needs to get the score from th game
-                            self.endGame()
+                            self.endGame(reset: false)
                         }
                     }
                     self.finalTime = String(format:"%.2d:%.2d", self.minutes, self.seconds)
@@ -85,9 +84,13 @@ class GridViewModel: ObservableObject {
         
     }
     
-    func endGame() {
-        self.timerState = .end
+    func endGame(reset: Bool) {
+        
         self.timer.invalidate()
         self.finalTime = String(format:"%.2d:%.2d", minutes, seconds)
+        
+        if reset {
+            
+        }
     }
 }
