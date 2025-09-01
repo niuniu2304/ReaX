@@ -45,6 +45,6 @@ struct GridView: View {
 }
 
 #Preview {
-    PlayView(isPlaying: ReaXApp().$isPlaying)
+    PlayView()
         .environmentObject(GridViewModel())
 }

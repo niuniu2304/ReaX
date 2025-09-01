@@ -19,7 +19,7 @@ struct CellView : View {
                 // Maybe use an animation to transition from the color changes
                 
                 //Minus 200 points if clicked on the red button
-                gridViewModel.score -= 200
+                gridViewModel.currentScore -= 200
                 gridViewModel.life -= 1
                 if gridViewModel.life == 0 {
                     // Add the data from the game to the container

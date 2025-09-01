@@ -11,7 +11,7 @@ class GridViewModel: ObservableObject {
     
     
     @Published var life: Int = 3
-    @Published var score: Int = 0
+    @Published var currentScore: Int = 0
     @Published var win: Bool = false
     
     
@@ -79,6 +79,10 @@ class GridViewModel: ObservableObject {
     }
     
     func gameOver(reset: Bool) {
+        
+    }
+    
+    func reset() {
         
     }
 }

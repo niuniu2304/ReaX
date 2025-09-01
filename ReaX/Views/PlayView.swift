@@ -12,7 +12,6 @@ struct PlayView: View {
     
     @EnvironmentObject var gridViewModel: GridViewModel
     @EnvironmentObject var timerViewModel: TimerViewModel
-    @Binding var isPlaying: Bool
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
@@ -42,7 +41,7 @@ struct PlayView: View {
                 VStack {
                     Text("Score:  ")
                         .font(.system(size: 20, weight: .bold, design: .default))
-                    Text("\(scores.isEmpty ? 0: gridViewModel.score)")
+                    Text("\(scores.isEmpty ? 0: gridViewModel.currentScore)")
                         .font(.system(size: 40, weight: .bold, design: .default))
                 }
                 .padding(.trailing, 15)
@@ -120,7 +119,7 @@ struct PlayView: View {
 }
 
 #Preview {
-    PlayView(isPlaying: ReaXApp().$isPlaying)
+    PlayView()
         .modelContainer(for: Scores.self, inMemory: true)
         .environmentObject(GridViewModel())
         .environmentObject(TimerViewModel())

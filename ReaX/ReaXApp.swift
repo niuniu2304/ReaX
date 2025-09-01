@@ -38,13 +38,14 @@ struct ReaXApp: App {
         WindowGroup {
             NavigationView {
                 if isPlaying {
-                    PlayView(isPlaying: $isPlaying)
+                    PlayView()
                 } else {
                     HomeView(isPlaying: $isPlaying)
                 }
             }
             .environmentObject(gridViewModel)
             .environmentObject(timerViewModel)
+            
         }
         .modelContainer(sharedModelContainer)
     }

@@ -56,9 +56,9 @@ class TimerViewModel: ObservableObject {
     func endGame(reset: Bool) {
         self.timer.invalidate()
         self.finalTime = String(format:"%.2d:%.2d", minutes, seconds)
-        if reset {
-            
-        }
     }
     
+    func reset() {
+        
+    }
 }
