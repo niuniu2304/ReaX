@@ -45,6 +45,7 @@ struct GridView: View {
 }
 
 #Preview {
-    PlayView()
+    PlayView(isPlaying: ReaXApp().$isPlaying)
         .environmentObject(GridViewModel())
+        .environmentObject(TimerViewModel())
 }

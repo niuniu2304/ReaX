@@ -10,6 +10,8 @@ import SwiftData
 
 struct PlayView: View {
     
+    @Binding var isPlaying: Bool
+    
     @EnvironmentObject var gridViewModel: GridViewModel
     @EnvironmentObject var timerViewModel: TimerViewModel
     @Query(sort: \Scores.score) private var scores: [Scores]
@@ -84,7 +86,7 @@ struct PlayView: View {
                     NavigationLink {
                         // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
                         // Show gameOver Scheet
-                        ScoresView()
+                        GameOverView(isPlaying: $isPlaying)
                     } label: {
                         Circle()
                             .fill(Color.yellow)
@@ -119,7 +121,7 @@ struct PlayView: View {
 }
 
 #Preview {
-    PlayView()
+    PlayView(isPlaying: ReaXApp().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
         .environmentObject(GridViewModel())
         .environmentObject(TimerViewModel())

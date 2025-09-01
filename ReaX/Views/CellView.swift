@@ -49,4 +49,7 @@ struct CellView : View {
 
 #Preview {
     CellView(cellModel: CellModel())
+        .modelContainer(for: Scores.self, inMemory: true)
+        .environmentObject(GridViewModel())
+        .environmentObject(TimerViewModel())
 }

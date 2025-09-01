@@ -12,6 +12,8 @@ struct GameOverView: View {
     
     // To get the score of the game
     
+    @Binding var isPlaying: Bool
+    
     @EnvironmentObject var gridViewModel: GridViewModel
     @EnvironmentObject var timerViewModel: TimerViewModel
     // TO acces the container and the best score and then to Add the score into the container
@@ -39,7 +41,7 @@ struct GameOverView: View {
                     
                     HStack {
                         NavigationLink {
-                            PlayView()
+                            PlayView(isPlaying: $isPlaying)
                         } label: {
                             
                             RoundedRectangle(cornerRadius: 12)
@@ -58,8 +60,7 @@ struct GameOverView: View {
                         
                         
                         NavigationLink {
-                            PlayView()
-                            //HomeView()
+                            HomeView(isPlaying: $isPlaying)
                         } label: {
                             
                             RoundedRectangle(cornerRadius: 12)
@@ -88,5 +89,8 @@ struct GameOverView: View {
 }
 
 #Preview {
-    GameOverView()
+    GameOverView(isPlaying: ReaXApp().$isPlaying)
+        .modelContainer(for: Scores.self, inMemory: true)
+        .environmentObject(GridViewModel())
+        .environmentObject(TimerViewModel())
 }

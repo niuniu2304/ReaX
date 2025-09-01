@@ -11,7 +11,7 @@ class GridViewModel: ObservableObject {
     
     
     @Published var life: Int = 3
-    @Published var currentScore: Int = 0
+    @Published var currentScore: Int = 201
     @Published var win: Bool = false
     
     

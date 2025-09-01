@@ -38,7 +38,7 @@ struct ReaXApp: App {
         WindowGroup {
             NavigationView {
                 if isPlaying {
-                    PlayView()
+                    PlayView(isPlaying: $isPlaying)
                 } else {
                     HomeView(isPlaying: $isPlaying)
                 }
