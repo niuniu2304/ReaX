@@ -12,16 +12,14 @@ struct HomeView: View {
     @Binding var isPlaying: Bool
     
     var body: some View {
-        NavigationView() {
+        // Delete NavigationView From HomeView Because navigationViewProperty is already passed down From ReaxApp.
+        
             VStack(alignment: .center, spacing: 10) {
-                
                 Text("ReaX")
                     .font(.system(size: 80, weight: .bold, design: .default))
                     .padding(.bottom, 150)
-                
-                NavigationLink {
-                    ScoresView()
-                } label: {
+                NavigationLink { ScoresView() }
+                label: {
                     RoundedRectangle(cornerRadius: 30)
                         .fill(
                             LinearGradient(gradient: Gradient(colors: [.orange, .mint]),
@@ -65,13 +63,13 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
-        }
-        
     }
 }
 
 #Preview {
-    HomeView(isPlaying: ReaXApp().$isPlaying)
-        .modelContainer(for: Scores.self, inMemory: true)
+    NavigationView() {
+        HomeView(isPlaying: ReaXApp().$isPlaying)
+            .modelContainer(for: Scores.self, inMemory: true)
+    }
 }
 

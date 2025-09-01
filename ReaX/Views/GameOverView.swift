@@ -21,8 +21,8 @@ struct GameOverView: View {
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
-        NavigationView {
-            ZStack {
+        // Delete NavigationView From HomeView Because navigationViewProperty is already passed down From ReaxApp.
+        ZStack {
                 RoundedRectangle(cornerRadius: 30)
                     .fill(LinearGradient(gradient: Gradient(colors: [.mint, .pink]),
                                          startPoint: .leading,
@@ -74,8 +74,7 @@ struct GameOverView: View {
                     }
                 }
             }
-            
-        }
+            .navigationBarHidden(true)
     }
     func saveResetScore(playing: Bool) {
         let score = Scores(timestamp: Date.now, score: gridViewModel.currentScore, time: timerViewModel.finalTime)
