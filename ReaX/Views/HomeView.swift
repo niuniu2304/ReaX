@@ -12,16 +12,12 @@ struct HomeView: View {
     @Binding var isPlaying: Bool
     
     var body: some View {
-        
-        // Maybe Factore out the playButton so that when pressed it is animated to be a pause button for the playView And that the rest disapears
-
         NavigationView() {
             VStack(alignment: .center, spacing: 10) {
                 
                 Text("ReaX")
                     .font(.system(size: 80, weight: .bold, design: .default))
                     .padding(.bottom, 150)
-                
                 
                 NavigationLink {
                     ScoresView()
@@ -68,6 +64,7 @@ struct HomeView: View {
                         .padding(.vertical, 10)
                 }
             }
+            .navigationBarHidden(true)
         }
         
     }
@@ -77,3 +74,4 @@ struct HomeView: View {
     HomeView(isPlaying: ReaXApp().$isPlaying)
         .modelContainer(for: Scores.self, inMemory: true)
 }
+

@@ -52,10 +52,7 @@ struct GameOverView: View {
                                 }
                         }
                         .onTapGesture {
-                            let score = Scores(timestamp: Date.now, score: gridViewModel.currentScore, time: timerViewModel.finalTime)
-                            modelContext.insert(score)
-                            //  + Update isPlaying global variable + Jump right to playView
-                            gridViewModel.reset()
+                            saveResetScore(playing: true)
                         }
                         
                         
@@ -71,11 +68,7 @@ struct GameOverView: View {
                                 }
                         }
                         .onTapGesture {
-                            let score = Scores(timestamp: Date.now, score: gridViewModel.currentScore, time: timerViewModel.finalTime)
-                            modelContext.insert(score)
-                            // + Update isPlaying global variable + Jump right to HomeView
-                            gridViewModel.reset()
-                            timerViewModel.reset()
+                            saveResetScore(playing: false)
                         }
                         
                     }
@@ -83,8 +76,14 @@ struct GameOverView: View {
             }
             
         }
-        
-        
+    }
+    func saveResetScore(playing: Bool) {
+        let score = Scores(timestamp: Date.now, score: gridViewModel.currentScore, time: timerViewModel.finalTime)
+        modelContext.insert(score)
+        isPlaying = playing
+        // + Update isPlaying global variable + Jump right to HomeView
+        gridViewModel.reset()
+        timerViewModel.reset()
     }
 }
 
