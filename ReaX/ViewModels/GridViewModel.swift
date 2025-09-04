@@ -11,8 +11,7 @@ class GridViewModel: ObservableObject {
     
     
     @Published var life: Int = 3
-    @Published var currentScore: Int = 201
-    @Published var win: Bool = false
+    @Published var currentScore: Int = 0
     
     
     @Published var grid: [CellModel] = [
@@ -83,6 +82,7 @@ class GridViewModel: ObservableObject {
     }
     
     func reset() {
-        
+        life = 3
+        currentScore = 0
     }
 }

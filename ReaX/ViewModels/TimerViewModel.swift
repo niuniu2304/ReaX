@@ -59,6 +59,11 @@ class TimerViewModel: ObservableObject {
     }
     
     func reset() {
-        
+        minutes = 0
+        seconds = 0
+        countDown = 3
+        finalTime = ""
+        self.timerState = .start
+        win = false
     }
 }
