@@ -12,6 +12,9 @@ class GridViewModel: ObservableObject {
     
     @Published var life: Int = 3
     @Published var currentScore: Int = 0
+    @Published var gameOver: Bool = false
+    
+    private var timer: Timer = Timer()
     
     
     @Published var grid: [CellModel] = [
