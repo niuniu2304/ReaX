@@ -38,7 +38,6 @@ class TimerViewModel: ObservableObject {
                     if self.minutes == 60 {
                         self.win = true
                         // Needs to get the score from th game
-                        self.endGame(reset: false)
                     }
                 }
                 self.finalTime = String(format:"%.2d:%.2d", self.minutes, self.seconds)
@@ -53,12 +52,9 @@ class TimerViewModel: ObservableObject {
         self.timerState = .stop
     }
     
-    func endGame(reset: Bool) {
-        self.timer.invalidate()
-        self.finalTime = String(format:"%.2d:%.2d", minutes, seconds)
-    }
     
     func reset() {
+        self.timer.invalidate()
         minutes = 0
         seconds = 0
         countDown = 3

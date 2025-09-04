@@ -20,25 +20,23 @@ struct GridView: View {
         Grid() {
             GridRow {
                 ForEach(0..<3, id: \.self) { index in
-                    CellView(cellModel: self.gridViewModel.grid[index])
+                    CellView(cellNumber: index)
                 }
             }
             GridRow {
                 ForEach(3..<6, id: \.self) { index in
-                    CellView(cellModel: self.gridViewModel.grid[index])
+                    CellView(cellNumber: index)
                 }
             }
             GridRow {
                 ForEach(6..<9, id: \.self) { index in
-                    CellView(cellModel: self.gridViewModel.grid[index])
+                    CellView(cellNumber: index)
                 }
             }
         }
         .onAppear(){
             timerViewModel.startTimer()
-        }
-        .onDisappear {
-            timerViewModel.endGame(reset: false)
+            gridViewModel.changeRandomCells()
         }
         
     }

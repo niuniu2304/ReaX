@@ -62,6 +62,7 @@ struct PlayView: View {
             case .start:
                 Button {
                     timerViewModel.pause()
+                    gridViewModel.stop()
                 } label: {
                     Circle()
                         .fill(Color.mint)
@@ -70,6 +71,7 @@ struct PlayView: View {
                             if timerViewModel.countDown != 0 {
                                 Text("\(timerViewModel.countDown)")
                                     .frame(width: 100, height: 100)
+                                    .foregroundStyle(Color.red)
                             }
                             else {
                                 Image(systemName: "pause")
@@ -82,10 +84,7 @@ struct PlayView: View {
             case .stop:
                 HStack (alignment: .center){
                     
-                    // Needs to make the VIew NavigationView
                     NavigationLink {
-                        // TODO: Create the gameOver Sheet and from this sheet add the data from the game to the container. Then initialize everything to default (such as life = 3...)
-                        // Show gameOver Scheet
                         GameOverView(isPlaying: $isPlaying)
                     } label: {
                         Circle()
@@ -97,12 +96,12 @@ struct PlayView: View {
                             }
                     }
                     .onTapGesture {
-                        timerViewModel.endGame(reset: false)
+                        isPlaying = false
                     }
-
                     
                     Button {
                         timerViewModel.startTimer()
+                        gridViewModel.changeRandomCells()
                     } label: {
                         Circle()
                             .fill(Color.red)
