@@ -19,14 +19,6 @@ struct PlayView: View {
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
-        
-        /*
-         When game is over make an argument in gameOverView to check weather we win (by time) or lose (by life) and use a ternary operator ... if lose then display lose message in gameOverView (for the argument for this View) & if win, pass down Win message to gameOverView
-         */
-        
-        
-        
-        
         if !gridViewModel.gameOver || !timerViewModel.win {
             VStack(){
                 HStack {
