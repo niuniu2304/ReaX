@@ -13,7 +13,9 @@ struct GameOverView: View {
     // To get the score of the game
     
     @Binding var isPlaying: Bool
+    let gameOverText: String
     
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var gridViewModel: GridViewModel
     @EnvironmentObject var timerViewModel: TimerViewModel
     // TO acces the container and the best score and then to Add the score into the container
@@ -37,11 +39,15 @@ struct GameOverView: View {
                         .padding()
                     Text("\(timerViewModel.finalTime)")
                         .font(.system(size: 20, weight: .bold, design: .default))
+                        .padding(.bottom, )
+                    Text(gameOverText)
+                        .font(.system(size: 20, weight: .bold, design: .default))
                         .padding(.bottom, 110)
                     
                     HStack {
-                        NavigationLink {
-                            PlayView(isPlaying: $isPlaying)
+                        Button {
+                            saveResetScore(playing: true)
+                            presentationMode.wrappedValue.dismiss()
                         } label: {
                             
                             RoundedRectangle(cornerRadius: 12)
@@ -51,13 +57,11 @@ struct GameOverView: View {
                                     Image(systemName: "play.fill")
                                 }
                         }
-                        .onTapGesture {
-                            saveResetScore(playing: true)
-                        }
                         
                         
-                        NavigationLink {
-                            HomeView(isPlaying: $isPlaying)
+                        Button {
+                            saveResetScore(playing: false)
+                            presentationMode.wrappedValue.dismiss()
                         } label: {
                             
                             RoundedRectangle(cornerRadius: 12)
@@ -67,10 +71,6 @@ struct GameOverView: View {
                                     Image(systemName: "house.fill")
                                 }
                         }
-                        .onTapGesture {
-                            saveResetScore(playing: false)
-                        }
-                        
                     }
                 }
             }
@@ -87,7 +87,7 @@ struct GameOverView: View {
 }
 
 #Preview {
-    GameOverView(isPlaying: ReaXApp().$isPlaying)
+    GameOverView(isPlaying: ReaXApp().$isPlaying, gameOverText: "Win")
         .modelContainer(for: Scores.self, inMemory: true)
         .environmentObject(GridViewModel())
         .environmentObject(TimerViewModel())
