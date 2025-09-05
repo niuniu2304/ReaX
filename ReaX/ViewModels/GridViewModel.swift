@@ -13,14 +13,15 @@ class GridViewModel: ObservableObject {
     @Published var life: Int = 3
     @Published var currentScore: Int = 0
     @Published var gameOver: Bool = false
+    @Published var countDown: Int = 3
     
     private var timer: Timer = Timer()
     
     
     @Published var grid: [CellModel] = [
-        CellModel(cellState: .red), CellModel(), CellModel(cellState: .red),
-        CellModel(cellState: .black), CellModel(cellState: .green), CellModel(),
-        CellModel(cellState: .green), CellModel(), CellModel(cellState: .green),
+        CellModel(), CellModel(), CellModel(),
+        CellModel(), CellModel(), CellModel(),
+        CellModel(), CellModel(), CellModel(),
     ]
     
     
@@ -29,25 +30,29 @@ class GridViewModel: ObservableObject {
         // Need to add a random time intervall between each changes.
         
         let randomStates: [CellModel.cellStates] = [.green, .red, .black]
-        
-        
-        let randomCells: [Int] = [Int.random(in: 0..<9), Int.random(in: 0..<9),]
-        let randomState: [CellModel.cellStates] = [randomStates.randomElement() ?? .normal, randomStates.randomElement() ?? .normal,]
-        let randomTimes: [Double] = [Double.random(in: 0.2..<1), Double.random(in: 0.2..<1.5)]
-        let randomBool: Bool = Bool.random()
+        var randomTimes: [Double] = [Double.random(in: 0.5..<1.5), Double.random(in: 0.5..<2)]
         
         self.timer = Timer.scheduledTimer(withTimeInterval: randomTimes[1], repeats: true, block: { [self] Timer in
-            if randomBool {
-                self.grid[randomCells[0]].cellState = randomState[0]
-                self.grid[randomCells[1]].cellState = randomState[1]
-                DispatchQueue.main.asyncAfter(deadline: .now() + randomTimes[0]){
-                    self.grid[randomCells[0]].cellState = .normal
-                    self.grid[randomCells[1]].cellState = .normal
-                }
+            if countDown != 0 {
+                countDown -= 1
             } else {
-                self.grid[randomCells[0]].cellState = randomState[0]
-                DispatchQueue.main.asyncAfter(deadline: .now() + randomTimes[0]){
-                    self.grid[randomCells[0]].cellState = .normal
+                let randomCells: [Int] = [Int.random(in: 0..<9), Int.random(in: 0..<9),]
+                let randomState: [CellModel.cellStates] = [randomStates.randomElement() ?? .normal, randomStates.randomElement() ?? .normal,]
+                randomTimes = [Double.random(in: 0.2..<1), Double.random(in: 0.2..<1.5)]
+                let randomBool: Bool = Bool.random()
+                
+                if randomBool {
+                    self.grid[randomCells[0]].cellState = randomState[0]
+                    self.grid[randomCells[1]].cellState = randomState[1]
+                    DispatchQueue.main.asyncAfter(deadline: .now() + randomTimes[0]){
+                        self.grid[randomCells[0]].cellState = .normal
+                        self.grid[randomCells[1]].cellState = .normal
+                    }
+                } else {
+                    self.grid[randomCells[0]].cellState = randomState[0]
+                    DispatchQueue.main.asyncAfter(deadline: .now() + randomTimes[0]){
+                        self.grid[randomCells[0]].cellState = .normal
+                    }
                 }
             }
         })
@@ -58,13 +63,20 @@ class GridViewModel: ObservableObject {
         
     }
     
+    func checkLose() {
+        if life <= 0 {
+            gameOver = true
+        }
+    }
     
     
     func stop() {
+        countDown = 3
         self.timer.invalidate()
     }
     
     func reset() {
+        countDown = 3
         self.timer.invalidate()
         life = 3
         currentScore = 0
