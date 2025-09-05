@@ -15,17 +15,9 @@ struct CellView : View {
     var body: some View {
         Button {
             if gridViewModel.grid[cellNumber].cellState == .red {
-                // Deduct points from the score variable (+ make the score variable an environment variable accessible by all are use a @Binding to change it's value Or just make the user lose
-                // Maybe use an animation to transition from the color changes
-                
-                //Minus 200 points if clicked on the red button
                 gridViewModel.currentScore -= 200
                 gridViewModel.life -= 1
-                if gridViewModel.life == 0 {
-                    // Add the data from the game to the container
-                    gridViewModel.gameOver = true
-                    gridViewModel.reset()
-                }
+                gridViewModel.checkLose()
             } else if gridViewModel.grid[cellNumber].cellState == .green{
                 // Add points to score
                 gridViewModel.currentScore += 50
@@ -33,6 +25,7 @@ struct CellView : View {
                 // Do nothing or deduct points but less than if it's red
                 gridViewModel.currentScore -= 400
                 gridViewModel.life -= 1
+                gridViewModel.checkLose()
             }
         } label: {
             RoundedRectangle(cornerRadius: 20)
