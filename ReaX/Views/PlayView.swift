@@ -89,6 +89,7 @@ struct PlayView: View {
                         
                         Button {
                             gridViewModel.gameOver = true
+                            isPlaying = false
                             timerViewModel.pause()
                             gridViewModel.stop()
                         } label: {
