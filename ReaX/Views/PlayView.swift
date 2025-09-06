@@ -89,6 +89,8 @@ struct PlayView: View {
                         
                         Button {
                             gridViewModel.gameOver = true
+                            timerViewModel.pause()
+                            gridViewModel.stop()
                         } label: {
                             Circle()
                                 .fill(Color.yellow)

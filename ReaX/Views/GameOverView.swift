@@ -74,6 +74,10 @@ struct GameOverView: View {
                     }
                 }
             }
+        .onAppear(perform: {
+            timerViewModel.pause()
+            gridViewModel.stop()
+        })
             .navigationBarHidden(true)
     }
     func saveResetScore(playing: Bool) {
