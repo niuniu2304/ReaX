@@ -19,7 +19,7 @@ struct PlayView: View {
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
-        if !gridViewModel.gameOver || !timerViewModel.win {
+        if !gridViewModel.gameOver && !timerViewModel.win {
             VStack(){
                 HStack {
                     VStack(){
