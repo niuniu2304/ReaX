@@ -15,7 +15,7 @@ struct GameOverView: View {
     @Binding var isPlaying: Bool
     let gameOverText: String
     
-    @Environment(\.presentationMode) var presentationMode
+    
     @EnvironmentObject var gridViewModel: GridViewModel
     @EnvironmentObject var timerViewModel: TimerViewModel
     // TO acces the container and the best score and then to Add the score into the container
@@ -47,7 +47,7 @@ struct GameOverView: View {
                     HStack {
                         Button {
                             saveResetScore(playing: true)
-                            presentationMode.wrappedValue.dismiss()
+                            
                         } label: {
                             
                             RoundedRectangle(cornerRadius: 12)
@@ -61,7 +61,7 @@ struct GameOverView: View {
                         
                         Button {
                             saveResetScore(playing: false)
-                            presentationMode.wrappedValue.dismiss()
+                            
                         } label: {
                             
                             RoundedRectangle(cornerRadius: 12)
@@ -83,10 +83,11 @@ struct GameOverView: View {
     func saveResetScore(playing: Bool) {
         let score = Scores(timestamp: Date.now, score: gridViewModel.currentScore, time: timerViewModel.finalTime)
         modelContext.insert(score)
-        isPlaying = playing
-        // + Update isPlaying global variable + Jump right to HomeView
         gridViewModel.reset()
         timerViewModel.reset()
+        isPlaying = false
+        isPlaying = playing
+        // + Update isPlaying global variable + Jump right to HomeView if isPlaying = false
     }
 }
 

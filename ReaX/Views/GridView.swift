@@ -38,6 +38,10 @@ struct GridView: View {
             timerViewModel.startTimer()
             gridViewModel.changeRandomCells()
         }
+        .onDisappear() {
+            timerViewModel.pause()
+            gridViewModel.stop()
+        }
         
     }
 }
