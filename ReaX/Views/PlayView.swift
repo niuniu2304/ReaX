@@ -26,7 +26,7 @@ struct PlayView: View {
                         Text("Top Score:")
                             .font(.system(size: 20, weight: .bold, design: .rounded))
                             .padding(.leading,10)
-                        Text("\(scores.isEmpty ? 0:scores[0].score)")
+                        Text("\(scores.isEmpty ? 0:scores[scores.count - 1].score)")
                             .font(.system(size: 40, weight: .bold, design: .rounded))
                             .padding(.leading, 10)
                     }
