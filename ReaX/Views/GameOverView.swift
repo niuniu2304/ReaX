@@ -32,7 +32,7 @@ struct GameOverView: View {
                     .frame(width: 350, height: 600)
                 
                 VStack{
-                    Image(systemName: "\(gridViewModel.currentScore > (scores.isEmpty ? 0: scores[0].score) ? "crown" : "")")
+                    Image(systemName: "\(gridViewModel.currentScore > (scores.isEmpty ? 0: scores[scores.count - 1].score) ? "crown" : "")")
                         .font(.system(size: 100, weight: .bold, design: .default))
                     Text("\(gridViewModel.currentScore)")
                         .font(.system(size: 80, weight: .bold, design: .default))

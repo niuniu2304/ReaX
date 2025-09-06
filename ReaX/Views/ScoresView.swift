@@ -38,7 +38,7 @@ struct ScoresView: View {
             }
             .navigationTitle("Scores")
         } detail: {
-            Text("Select an item")
+            Text("Scores View")
         }
     }
 }

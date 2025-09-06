@@ -60,6 +60,7 @@ struct HomeView: View {
                     .padding(.vertical, 10)
             }
         }
+        
         .navigationBarHidden(true)
     }
 }
