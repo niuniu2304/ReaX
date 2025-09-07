@@ -50,6 +50,7 @@ struct ScoresView: View {
             .toolbar {
                 if !scores.isEmpty {
                     Button {
+                        // Make an alert toggle the showalert variable and then from the alert delete everything
                         for score in (scores) {
                             modelContext.delete(score)
                         }
