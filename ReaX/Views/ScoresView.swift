@@ -14,7 +14,7 @@ struct ScoresView: View {
     @Query(sort: \Scores.score) private var scores: [Scores]
     
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             
             let orderedScores = scores.sorted(by: { $0.score > $1.score })
             List {
@@ -28,9 +28,10 @@ struct ScoresView: View {
                         }
                         Spacer()
                         Text("\(score.score)")
-                            .font(.system(20, design: .rounded, weight: .bold))
+                            
                             .foregroundStyle(Color.mint)
                     }
+                    .padding()
                     .background {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.green)
@@ -38,13 +39,37 @@ struct ScoresView: View {
                     }
                     .padding()
                 }
+                .onDelete { indexSet in
+                    for i in indexSet {
+                        modelContext.delete(scores[i])
+                    }
+                }
             }
             .navigationTitle("Scores")
-        } detail: {
-            Text("Scores View")
+            .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                if !scores.isEmpty {
+                    Button {
+                        for score in (scores) {
+                            modelContext.delete(score)
+                        }
+                    } label: {
+                        Image(systemName: "minus.circle.fill")
+                    }
+                }
+            }
+            .overlay {
+                if scores.isEmpty {
+                    ContentUnavailableView(
+                        "No Scores",
+                        systemImage: "list.bullet.rectangle",
+                        description: Text("Play to get your scores"))
+                }
+            }
         }
     }
 }
+
 
 
 #Preview {
