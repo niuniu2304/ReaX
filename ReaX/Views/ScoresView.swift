@@ -16,7 +16,6 @@ struct ScoresView: View {
     var body: some View {
         NavigationSplitView {
             
-            // TODO: Make a ScrollView with rectangles of different size and color (for the 3 best Scores) Depending of the score And then make rectangles with the score the date and the time they took.
             let orderedScores = scores.sorted(by: { $0.score > $1.score })
             List {
                 ForEach(orderedScores) { score in
@@ -27,13 +26,17 @@ struct ScoresView: View {
                                 .foregroundStyle(.secondary)
                             Text(score.time)
                         }
+                        Spacer()
                         Text("\(score.score)")
+                            .font(.system(20, design: .rounded, weight: .bold))
                             .foregroundStyle(Color.mint)
                     }
                     .background {
-                        Color.green
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.green)
                             .opacity(0.5)
                     }
+                    .padding()
                 }
             }
             .navigationTitle("Scores")
