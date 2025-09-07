@@ -8,6 +8,10 @@
 import Foundation
 
 class TimerViewModel: ObservableObject {
+    
+    // Instead of making the variables Public -> Make them private to the function and only access the values based on function calls from the View.
+    // Also make the timer Using Date() CurrentDate - StartDate = TimePassed.
+    
     enum timerState {
         case start
         case stop
