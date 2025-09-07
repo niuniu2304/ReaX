@@ -76,8 +76,7 @@ class GridViewModel: ObservableObject {
     }
     
     func reset() {
-        countDown = 3
-        self.timer.invalidate()
+        stop()
         life = 3
         currentScore = 0
         gameOver = false
