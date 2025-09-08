@@ -41,7 +41,7 @@ struct ScoresView: View {
                 }
                 .onDelete { indexSet in
                     for i in indexSet {
-                        modelContext.delete(scores[i])
+                        modelContext.delete(orderedScores[i])
                     }
                 }
             }
