@@ -24,6 +24,8 @@ class GridViewModel: ObservableObject {
         CellModel(), CellModel(), CellModel(),
     ]
     
+    // Alternative: grid[ [CellModel(), CellModel(), CellModel(),], [CellModel(), CellModel(), CellModel(),], [CellModel(), CellModel(), CellModel(),] ]
+    
     
     
     func changeRandomCells() {

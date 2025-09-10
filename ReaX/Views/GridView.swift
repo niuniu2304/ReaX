@@ -15,8 +15,8 @@ struct GridView: View {
     
     var body: some View {
         
-        
-        
+        // Maybe make a nested for loops (for i [...]: for j [...] and instead of accessing the grid by a 1D array, use a 2D array (grid[i][j] to access each cells seperatly grid[[1,2,3], [1,2,3], [1,2,3]]
+
         Grid() {
             GridRow {
                 ForEach(0..<3, id: \.self) { index in
