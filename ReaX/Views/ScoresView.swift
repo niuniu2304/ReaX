@@ -11,6 +11,7 @@ import SwiftData
 struct ScoresView: View {
     
     // Idea: Only allow a space of 150 (or some N (arbitrary number that needs to be fixed))  scores that can be scored. For each excess score ( either remove the worsed score or the latest score that has been registered.)
+    @State private var showAlert: Bool = false
     
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Scores.score) private var scores: [Scores]
