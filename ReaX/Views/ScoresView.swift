@@ -52,12 +52,12 @@ struct ScoresView: View {
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 if !scores.isEmpty {
-                    Button {
+                    Button(action: {
                         // Make an alert toggle the showalert variable and then from the alert delete everything
                         for score in (scores) {
                             modelContext.delete(score)
                         }
-                    } label: {
+                    }) {
                         Image(systemName: "minus.circle.fill")
                     }
                 }
