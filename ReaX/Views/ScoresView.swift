@@ -52,14 +52,7 @@ struct ScoresView: View {
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 if !scores.isEmpty {
-                    Button(action: {
-                        // Make an alert toggle the showalert variable and then from the alert delete everything
-                        for score in (scores) {
-                            modelContext.delete(score)
-                        }
-                    }) {
-                        Image(systemName: "minus.circle.fill")
-                    }
+                    ButtonView
                 }
             }
             .overlay {
@@ -71,6 +64,25 @@ struct ScoresView: View {
                 }
             }
         }
+    }
+    var ButtonView: some View {
+        Button(action: {
+            // Make an alert toggle the showalert variable and then from the alert delete everything
+            showAlert = true
+        }) {
+            Image(systemName: "minus.circle.fill")
+        }
+        .alert("Delete all scores", isPresented: $showAlert) {
+            Button("Delete", role: .destructive) {
+                for score in (scores) {
+                    modelContext.delete(score)
+                }
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This action can not be reversed")
+        }
+
     }
 }
 
