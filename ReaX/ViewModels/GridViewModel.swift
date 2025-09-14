@@ -10,6 +10,15 @@ import Foundation
 class GridViewModel: ObservableObject {
     
     
+    //MARK: TODO's
+    // Also create different timer and levels: 1min, 3min, 5min 10min, 15min, 20min, 25min And 30min -> Each level corresponding to a different level and it gives you more or less points.
+    // Also create different levels of difficulties where the randomTImeIntervall between each cellstate changes and the timeIntervall between each change is different.
+    
+    // Add functionnalities that every 10seconds (or any arbitrary number of seconds that needs to be set) we update the score by removing some number of points to keep the user playing (aiming to earn points and therefor aiming to get a better score.
+    
+    // Instead of making the variables Public -> Make them private to the function and only access the values based on function calls from the View.
+    // Make the point checking in the viewModel instead of the View
+    
     @Published var life: Int = 3
     @Published var currentScore: Int = 0
     @Published var gameOver: Bool = false

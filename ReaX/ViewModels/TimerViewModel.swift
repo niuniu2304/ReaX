@@ -9,7 +9,22 @@ import Foundation
 
 class TimerViewModel: ObservableObject {
     
+    
+    //MARK: TODO's
+    // Also create different timer and levels: 1min, 3min, 5min 10min, 15min, 20min, 25min And 30min -> Each level corresponding to a different level and it gives you more or less points.
+    // Also create different levels of difficulties where the randomTImeIntervall between each cellstate changes and the timeIntervall between each change is different.
+    
+    // Add functionnalities that every 10seconds (or any arbitrary number of seconds that needs to be set) we update the score by removing some number of points to keep the user playing (aiming to earn points and therefor aiming to get a better score.
+    
     // Instead of making the variables Public -> Make them private to the function and only access the values based on function calls from the View.
+    private var duration: TimeInterval = 3600
+    private var startDate: DateInterval = DateInterval(start: Date(), duration: 3600)
+    
+    // And for each seconds in stop state update the duration to keep track of the timer
+//    if timerState == .stop {
+//        duration += 1
+//    }
+    
     // Also make the timer Using Date() CurrentDate - StartDate = TimePassed.
     
     enum timerState {
@@ -34,7 +49,7 @@ class TimerViewModel: ObservableObject {
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] timer in
             if countDown != 0 {
                 countDown -= 1
-            }else {
+            } else {
                 self.seconds += 1
                 if self.seconds == 60 {
                     self.seconds = 0

@@ -14,6 +14,8 @@ struct CellView : View {
     
     var body: some View {
         Button {
+            
+            // Make the point checking in the viewModel instead of the View
             if gridViewModel.grid[cellNumber].cellState == .red {
                 gridViewModel.currentScore -= 200
                 gridViewModel.life -= 1
