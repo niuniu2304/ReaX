@@ -88,10 +88,10 @@ struct PlayView: View {
                     HStack (alignment: .center){
                         
                         Button {
-                            gridViewModel.gameOver = true
                             
                             timerViewModel.pause()
                             gridViewModel.stop()
+                            gridViewModel.gameOver = true
                         } label: {
                             Circle()
                                 .fill(Color.yellow)
