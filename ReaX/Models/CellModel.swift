@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftData
-import SwiftUICore
+import SwiftUI
 
 struct CellModel: Identifiable {
     let id: String = UUID().uuidString

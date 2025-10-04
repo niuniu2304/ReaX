@@ -10,15 +10,11 @@ import SwiftData
 
 struct GameOverView: View {
     
-    // To get the score of the game
-    
     @Binding var isPlaying: Bool
     let gameOverText: String
-    
-    
     @EnvironmentObject var gridViewModel: GridViewModel
     @EnvironmentObject var timerViewModel: TimerViewModel
-    // TO acces the container and the best score and then to Add the score into the container
+
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Scores.score) private var scores: [Scores]
     
@@ -82,7 +78,9 @@ struct GameOverView: View {
     }
     func saveResetScore(playing: Bool) {
         let score = Scores(timestamp: Date.now, score: gridViewModel.currentScore, time: timerViewModel.finalTime)
-        modelContext.insert(score)
+        if scores.count < 8 {
+            modelContext.insert(score)
+        }
         gridViewModel.reset()
         timerViewModel.reset()
         isPlaying = false
