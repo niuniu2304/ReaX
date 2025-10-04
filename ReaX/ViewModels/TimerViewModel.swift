@@ -17,8 +17,8 @@ class TimerViewModel: ObservableObject {
     // Add functionnalities that every 10seconds (or any arbitrary number of seconds that needs to be set) we update the score by removing some number of points to keep the user playing (aiming to earn points and therefor aiming to get a better score.
     
     // Instead of making the variables Public -> Make them private to the function and only access the values based on function calls from the View.
-    private var duration: TimeInterval = 3600
-    private var startDate: DateInterval = DateInterval(start: Date(), duration: 3600)
+//    private var duration: TimeInterval = 3600
+//    private var startDate: DateInterval = DateInterval(start: Date(), duration: 3600)
     
     // And for each seconds in stop state update the duration to keep track of the timer
 //    if timerState == .stop {

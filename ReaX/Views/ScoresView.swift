@@ -48,10 +48,6 @@ struct ScoresView: View {
                     }
                 }
             }
-            // Just for test purpose
-            .onAppear() {
-                modelContext.insert(Scores(timestamp: .now, score: 394, time: "22:22"))
-            }
             .navigationTitle("Scores")
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
